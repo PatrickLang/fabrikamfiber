@@ -8,7 +8,12 @@ I have archived it here since I frequently use it for examples rebuilding existi
 
 There's a great guide on how to use this to test building Docker containers and deploying them to Azure Service Fabric [here](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-host-app-in-a-container).
 
-If you want to try a different orchestrator, follow the steps through the first **Test your container** section, then pick from the next sections here:
+If you want to try a different orchestrator, follow the steps through the first **Test your container** section, then pick from the next sections here.
+
+If you have already built the code in Visual Studio, then you can build and run the containers with:
+
+`docker-compose -f "C:\ignite2017\fabrikamfiber\docker-compose.yml" -f "C:\ignite2017\fabrikamfiber\docker-compose.override.yml" up -d`
+
 
 ### Kubernetes
 
