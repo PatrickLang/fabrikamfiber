@@ -1,0 +1,92 @@
+﻿@model FabrikamFiber.Web.ViewModels.AssignViewModel
+
+<h1>Available technicians <em>near 98052</em></h1>
+
+<div class="loading" style="">
+    <div>
+        <h4>Please wait while we look for the closest technicians</h4>
+        <img src="@Url.Content("~/Content/Images/ajax-loader.gif")" alt="loading" />
+    </div>
+</div>
+
+<div class="time-table">
+    <table>
+        <thead>
+            <tr>
+                <th class="employee">Employee</th>
+                <th colspan="2">8:00am</th>
+                <th colspan="2">9:00am</th>
+                <th colspan="2">10:00am</th>
+                <th colspan="2">11:00am</th>
+                <th colspan="2">12:00pm</th>
+                <th colspan="2">1:00pm</th>
+                <th colspan="2">2:00pm</th>
+                <th colspan="2">3:00pm</th>
+                <th colspan="2">4:00pm</th>
+            </tr>
+        </thead>
+    @foreach (var item in Model.AvailableEmployees) {
+        var startTime = DateTime.ParseExact("Mon 16 May 8:00 AM 2011", "ddd dd MMM h:mm tt yyyy", System.Globalization.CultureInfo.InvariantCulture);
+        var endTime = DateTime.ParseExact("Mon 16 May 5:00 PM 2011", "ddd dd MMM h:mm tt yyyy", System.Globalization.CultureInfo.InvariantCulture); 
+        var scheduledItems = this.Model.ScheduleItems.Where(i => i.EmployeeID == item.ID).OrderBy(i => i.Start); 
+
+        <tr rel="@Url.Action("Schedule", new { ServiceTicketID = Model.ServiceTicket.ID, EmployeeID = item.ID })">
+            <td class="employee">@item.FullName</td>
+        @foreach (var scheduleItem in scheduledItems) {
+            TimeSpan diff = (scheduleItem.Start - startTime);
+
+            for (var current = 0.0; current < (diff.Hours + diff.Minutes / 60.0); current += 0.5) {
+                <td class="free" rel="@((double)startTime.Hour + (double)current)">&nbsp;</td>         
+            }
+            
+            <td class="busy" colspan="@(scheduleItem.WorkHours * 2)">           
+                <div>
+                    <h2>@string.Format("A0141{0:d2}", scheduleItem.ServiceTicket.ID)</h2>
+                    <p>@scheduleItem.ServiceTicket.Title</p>
+                </div>
+            </td>
+            
+            startTime = scheduleItem.Start.AddHours(scheduleItem.WorkHours);
+        }
+
+        @{ 
+        TimeSpan complement = endTime - startTime;
+
+        for (var current = 0.0; current < (complement.Hours + complement.Minutes / 60.0); current += 0.5)
+           { 
+            <td class="free" rel="@((double)startTime.Hour + (double)current)">&nbsp;</td>         
+           }
+        }
+        </tr>
+    }
+        <tr>
+            <td class="employee">Ezequiel Morito</td>
+            <td class="full" colspan="20">Full Capacity</td> 
+        </tr>
+        <tr>
+            <td class="employee">Johnny Halife</td>
+            <td class="full" colspan="20">Full Capacity</td> 
+        </tr>
+        <tr>
+            <td class="employee">Juan Pablo Garcia</td>
+            <td class="full" colspan="20">Full Capacity</td> 
+        </tr>
+    </table>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("div.time-table table td.free").click(function () {
+            var location = $(this).parent().attr('rel') + "&startTime=" + $(this).attr('rel');
+            window.location.href = location;
+        });
+
+        window.setTimeout(function () {
+            $("div.loading").hide();
+        }, 2900);
+        
+        window.setTimeout(function () {
+            $("div.time-table").show('scale');
+        }, 3000);
+    });
+</script>

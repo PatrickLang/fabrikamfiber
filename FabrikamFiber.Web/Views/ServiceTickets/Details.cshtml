@@ -1,0 +1,124 @@
+@model FabrikamFiber.DAL.Models.ServiceTicket
+@{
+    ViewBag.Title = "Details";
+}
+@if (false)
+{ 
+<script src="@Url.Content("~/Scripts/jquery-1.5.1-vsdoc.js")" type="text/javascript"></script>
+}
+
+<h1>Details</h1>
+
+<fieldset>
+    <legend>Service Ticket #@string.Format("A0141{0:d2}", Model.ID)</legend>
+
+    <div class="actions">
+        @Html.ActionLink("Assign", "Assign", new { id = Model.ID }, new { @class = "glossyBox" }) 
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID }, new { @class = "glossyBox" }) 
+        @Html.ActionLink("Delete", "Delete", new { id = Model.ID }, new { @class = "glossyBox" })
+        @Html.ActionLink("Escalate", "Escalate", new { id = Model.ID }, new { @class = "glossyBox" }) 
+        @Html.ActionLink("Close", "Close", new { id = Model.ID }, new { @class = "glossyBox" })
+    </div>
+
+    <h2 class="display-label">Title</h2>
+    <p class="display-field">@Model.Title</p>
+    
+    <h2 class="display-label">Escalation Level</h2>
+    <p class="display-field">Level @Model.EscalationLevel</p>
+
+    <h2 class="display-label">Description</h2>
+    <p class="display-field">@Html.Raw(Model.Description)</p>
+
+    @if (Model.Customer != null)
+    {         
+        <div class="customerDetail">
+            <h2 class="display-label">Customer</h2>
+                   
+            <p class="display-field">@Model.Customer.FullName <br />
+            @Model.Customer.Address.Street <br />
+            @Model.Customer.Address.City, @Model.Customer.Address.State, @Model.Customer.Address.Zip</p>
+                    
+            <div id="BingMap0" class="map"><img src="@Url.Content("~/Content/images/maps/map1.png")" alt="map"></div>
+
+        </div>
+    }
+    
+    <h2 class="display-label">Ticket Opened</h2>
+    <p class="display-field">@String.Format("{0:g}", Model.Opened)</p>
+    
+    <h2 class="display-label">Created By</h2>
+    <p class="display-field">@(Model.CreatedBy == null ? "None" : Model.CreatedBy.FullName)</p>
+
+    <h2 class="display-label">Assigned To</h2>
+    <p class="display-field">@(Model.AssignedTo == null ? "None" : Model.AssignedTo.FullName)</p>
+
+</fieldset>
+
+<p>
+    @Html.ActionLink("Create New", "Create") |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+<hr />
+
+<h2 class="display-label">Log</h2>
+@Html.Partial("_ServiceLog", Model)
+
+    @if (Model.Customer != null)
+    { 
+        <script charset="UTF-8" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0" type="text/javascript"></script>
+        <script type="text/javascript">
+            var mapKey = "AqL2dvFjc7YxxbAr8HUwcTTLndI4JjnFKdTAWj1uMOZ2hdB85vJcTNov8S924Wpz";
+            var map = null;
+
+            function GeocodeCallback(result) {
+                if (result &&
+                result.resourceSets &&
+                result.resourceSets.length > 0 &&
+                result.resourceSets[0].resources &&
+                result.resourceSets[0].resources.length > 0) {
+                    // Set the map view using the returned bounding box
+                    var bbox = result.resourceSets[0].resources[0].bbox;
+                    var viewBoundaries = Microsoft.Maps.LocationRect.fromLocations(new Microsoft.Maps.Location(bbox[0], bbox[1]), new Microsoft.Maps.Location(bbox[2], bbox[3]));
+                    map.setView({ bounds: viewBoundaries });
+                    // Add a pushpin at the found location
+                    var location = new Microsoft.Maps.Location(result.resourceSets[0].resources[0].point.coordinates[0], result.resourceSets[0].resources[0].point.coordinates[1]);
+                    var pushpin = new Microsoft.Maps.Pushpin(location);
+                    map.entities.push(pushpin);
+                }
+            }
+
+            $(function () {
+                //                var map = new VEMap("BingMap0");
+                //                var latlong = new VELatLong(0, 0);
+                //                map.LoadMap(latlong, 0, "h", false);
+                //                map.AddShape(new VEShape(VEShapeType.Pushpin, latlong));
+                
+                return false;
+                
+                map = new Microsoft.Maps.Map(document.getElementById("BingMap0"),
+                    { credentials: mapKey,
+                        center: new Microsoft.Maps.Location(45.5, -122.5),
+                        mapTypeId: Microsoft.Maps.MapTypeId.road,
+                        zoom: 15
+                    });
+
+                var query = "@Model.Customer.Address.Street, @Model.Customer.Address.City, @Model.Customer.Address.State, @Model.Customer.Address.Zip";
+                var script = document.createElement("script");
+                script.setAttribute("type", "text/javascript");
+
+                map.getCredentials(function (credentials) {
+                    script.setAttribute("src", "http://dev.virtualearth.net/REST/v1/Locations/@Model.Customer.Address.Street, @Model.Customer.Address.City, @Model.Customer.Address.State, @Model.Customer.Address.Zip?output=json&jsonp=GeocodeCallback&key=" + credentials);
+                });
+
+                document.body.appendChild(script);
+
+                var center = map.getCenter();
+                var pin = new Microsoft.Maps.Pushpin(center, { text: '1' });
+                map.entities.push(pin);
+
+
+            }); 
+        </script>
+    }

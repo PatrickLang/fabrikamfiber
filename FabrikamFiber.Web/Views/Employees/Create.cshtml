@@ -1,0 +1,26 @@
+@model FabrikamFiber.DAL.Models.Employee
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h1>Create</h1>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Employee</legend>
+
+		@Html.Partial("_CreateOrEdit", Model)
+
+        <p>
+            <input type="submit" value="Create"  class="glossyBox"/>
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+

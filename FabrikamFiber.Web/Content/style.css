@@ -1,0 +1,13 @@
+
+
+/* Import styles */
+
+@import url('css/webfonts.css');
+@import url('css/miniml_reset_2011.css');
+@import url('css/general_styles_2011.css');
+@import url('css/layout_2011.css'); 
+
+
+/* tablet */
+
+/*@import url('css/tablet.css') (min-width:1200px);*/

@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html> 
+<html lang="en"> 
+<head>
+    <meta charset="utf-8" />
+    
+    <link rel="shortcut icon" href="@Url.Content("~/Content/images/favicon.ico")" /> 	
+
+    <title>@ViewBag.Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=9" />
+    <meta http-equiv="X-XSS-Protection" content="0" />
+    <link href="@Url.Content("~/Content/style.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/themes/base/jquery.ui.all.css")" rel="stylesheet" type="text/css" />
+    <script src="@Url.Content("~/Scripts/jquery-1.5.1.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jQuery.tmpl.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/knockout-1.2.0.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/knockout.mapping-latest.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery-ui-1.8.11.js")" type="text/javascript"></script>
+
+</head>
+<body>
+    <input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/VGhlIHN0YW5kYXJkIExvcmVtIElwc3VtIHBhc3NhZ2IGFyZSBib3VuZCB0byBlbnN1ZTsgYW5kIGVxdWFsIGJsYW1lIGJlbG9uZ3MgdG8gdGhvc2Ugd2hvIGZhaWwgaW4gdGhlaXIgZHV0eSB0aHJvdWdoIHdlYWtuZXNzIG9mIHdpbGwsIHdoaWNoIGlzIHRoZSBzYW1lIGFzIHNheWluZyB0aHJvdWdoIHNocmlua2luZyBmcm9tIHRvaWwgYW5kIHBhaW4uIFRoZXNlIGNhc2VzIGFyZSBwZXJmZWN0bHkgc2ltcGxlIGFuZCBlYXN5IHRvIGRpc3Rpbmd1aXNoLiBJbiBhIGZyZWUgaG91ciwgd2hlbiBvdXIgcG93ZXIgb2YgY2hvaWNlIGlzIHVudHJhbW1lbGxlZCBhbmQgd2hlbiBub3RoaW5nIHByZXZlbnRzIG91ciBiZWluZyBhYmxlIHRvIGRvIHdoYXQgd2UgbGlrZSBiZXN0LCBldmVyeSBwbGVhc3VyZSBpcyB0byBiZSB3ZWxjb21lZCBhbmQgZXZlcnkgcGFpbiBhdm9pZGVkLiBCdXQgaW4gY2VydGFpbiBjaXJjdW1zdGFuY2VzIGFuZCBvd2luZyB0byB0aGUgY2xhaW1zIG9mIGR1dHkgb3IgdGhlIG9ibGlnYXRpb25zIG9mIGJ1c2luZXNzIGl0IHdpbGwgZnJlcXVlbnRseSBvY2N1ciB0aGF0IHBsZWFzdXJlcyBoYXZlIHRvIGJlIHJlcHVkaWF0ZWQgYW5kIGFubm95YW5jZXMgYWNjZXB0ZWQuIFRoZSB3aXNlIG1hbiB0aGVyZWZvcmUgYWx3YXlzIGhvbGRzIGluIHRoZXNlIG1hdHRlcnMgdG8gdGhpcyBwcmluY2lwbGUgb2Ygc2VsZWN0aW9uOiBoZSByZWplY3RzIHBsZWFzdXJlcyB0byBzZWN1cmUgb3RoZXIgZ3JlYXRlciBwbGVhc3VyZXMsIG9yIGVsc2UgaGUgZW5kdXJlcyBwYWlucyB0byBhdm9pZCB3b3JzZSBwYWlucy4i=" />
+
+        <header>
+        
+            
+         
+            <hgroup> 
+              <h1><img src="@Url.Content("~/Content/images/logo_text.png")" alt="Fabrikam Fiber" /></h1> 
+              <h2>Support</h2> 
+            </hgroup> 
+
+            <nav>
+                <ul>
+                    <li>@Html.ActionLink("Dashboard", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Tickets", "Index", "ServiceTickets")</li>
+                    <li>@Html.ActionLink("Customers", "Index", "Customers")</li>
+                    <li>@Html.ActionLink("Employees", "Index", "Employees")</li>
+                    <li>@Html.ActionLink("Reports", "Index", "Reports")</li>
+                </ul>
+            </nav>
+
+        </header>
+
+        
+        
+    <div id="container">
+    
+            <aside id="profile">
+
+                @if (IsSectionDefined("Left"))
+                {
+                    RenderSection("Left");
+                }
+                else
+                { 
+                    @RenderPage("_Profile.cshtml")  
+                }
+             
+            </aside>
+        
+            <section id="content">
+                
+           @RenderBody()
+        </section>
+      
+
+
+    <!-- end of container -->
+    </div>
+    
+    <p id="copyright">
+        &copy; 2013 Fabrikam Fiber
+    </p>
+</body>
+</html>

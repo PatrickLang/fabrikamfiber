@@ -1,0 +1,23 @@
+@model FabrikamFiber.DAL.Models.ServiceTicket
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h1>Edit</h1>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Service Ticket #@string.Format("A0141{0:d2}", Model.ID)</legend>
+
+        @Html.HiddenFor(model => model.ID)
+		@Html.Partial("_CreateOrEdit", Model)
+
+        <p><input type="submit" value="Save" class="glossyBox" /></p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

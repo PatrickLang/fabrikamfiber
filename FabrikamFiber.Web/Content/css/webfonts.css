@@ -1,0 +1,36 @@
+
+@font-face {
+    font-family: 'SegoeWPBold';
+    src: url('../fonts/segoewp-bold-webfont.eot');
+    src: url('../fonts/segoewp-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/segoewp-bold-webfont.woff') format('woff'),
+         url('../fonts/segoewp-bold-webfont.ttf') format('truetype'),
+         url('../fonts/segoewp-bold-webfont.svg#SegoeWPBold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'SegoeWPLight';
+    src: url('../fonts/segoewp-light-webfont.eot');
+    src: url('../fonts/segoewp-light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/segoewp-light-webfont.woff') format('woff'),
+         url('../fonts/segoewp-light-webfont.ttf') format('truetype'),
+         url('../fonts/segoewp-light-webfont.svg#SegoeWPLight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'SegoeWPRegular';
+    src: url('../fonts/segoewp-webfont.eot');
+    src: url('../fonts/segoewp-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/segoewp-webfont.woff') format('woff'),
+         url('../fonts/segoewp-webfont.ttf') format('truetype'),
+         url('../fonts/segoewp-webfont.svg#SegoeWPRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}

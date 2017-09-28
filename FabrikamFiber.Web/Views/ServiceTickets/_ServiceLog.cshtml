@@ -1,0 +1,59 @@
+﻿@model FabrikamFiber.DAL.Models.ServiceTicket
+    
+<table class="dataTable">
+    <tr>
+        <th>CreatedAt</th>
+        <th>Description</th>
+    </tr>
+    
+    <tbody data-bind="template: { name: 'entryTemplate', foreach: entries}"></tbody>
+
+</table>
+
+<script id="entryTemplate" type="text/html">
+    <tr>
+        <td>
+            ${ formatDate(CreatedAt()) }
+        </td>
+        <td>
+            ${ Description }
+        </td>
+    </tr>
+</script>
+
+<script type="text/javascript">
+    var viewModel;
+
+    $().ready(function () {
+        $.getJSON("@Url.Action("GetLogEntries", new { id = Model.ID })").success(function (result) {
+            viewModel = ko.mapping.fromJS(result);
+            ko.applyBindings(viewModel);
+        });
+    });
+
+    function formatDate(datetime) {
+        var dateString = datetime.replace(/[^+0-9]*/img, "");
+        var dateObj = new Date(parseInt(dateString, 10));
+
+        var curr_date = dateObj.getDate();
+        var curr_month = dateObj.getMonth();
+        var curr_year = dateObj.getFullYear();
+        var curr_hour = dateObj.getHours();
+        var curr_min = dateObj.getMinutes();
+        var curr_sec = dateObj.getSeconds();
+        var returnValue = (parseInt(curr_month, 10) + 1) + "/" + curr_date + "/" + curr_year + " " + (curr_hour % 12 || 12) + ":" + padDigits(curr_min, 2) + (curr_hour < 12 ? " AM" : " PM");
+
+        return returnValue;
+    }
+
+    function padDigits(n, totalDigits) {
+        n = n.toString();
+        var pd = '';
+        if (totalDigits > n.length) {
+            for (i = 0; i < (totalDigits - n.length); i++) {
+                pd += '0';
+            }
+        }
+        return pd + n.toString();
+    }
+</script>

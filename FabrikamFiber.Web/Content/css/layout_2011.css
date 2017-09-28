@@ -1,0 +1,79 @@
+
+/* HEADER */
+
+header {width: 1000px; height: 160px; margin: 0 auto; position: relative; background: url('../images/logo.png') no-repeat left top}
+
+ header h3 {float: right; margin: 20px; color: #632406}
+ header h3 a, header h3 a:visited {color: #e4650f}
+ 
+ 
+ header hgroup {position: absolute; top: 55px; left: 175px}
+  header h2 {color: #d6500b; font-size: 22px; font-weight: bold; margin-top: -5px}
+  
+ header nav {position: absolute; bottom: 20px; right: 20px}
+  header nav a {margin-left: 20px;}
+
+/* CONTAINER */
+ 
+#container {position: relative; width: 960px; margin: 0 auto 20px; background: #f5f5f5; border: 1px solid white; overflow: hidden; 
+                -webkit-box-shadow: 0 0px 3px rgba(0,0,0,.15);
+                -moz-box-shadow: 0 0px 3px rgba(0,0,0,.15);
+                -ie-box-shadow: 0 0px 3px rgba(0,0,0,.15);
+                box-shadow: 0 0px 3px rgba(0,0,0,.15);
+            }
+
+/* PROFILE */
+            
+ #profile h1:first-child,  #content > h1{margin-bottom: 60px}
+
+ #profile {margin: 40px 0 0 35px; width: 135px; float: left}
+ 
+  #profile h1 {color: #898989}
+  #profile h2 {color: #351200; margin: 20px 0}
+  
+  .profileImage {width: 135px; height: 135px; 
+       -ie-box-shadow:     inset 0 0 10px #000000;
+       -moz-box-shadow:    inset 0 0 10px #000000;
+       -webkit-box-shadow: inset 0 0 10px #000000;
+       box-shadow:         inset 0 0 10px #000000;
+   }
+   
+   
+  #profile ul {margin: 0 0 30px 0; padding: 0; list-style: none; line-height: 200%; font-size: 14px; color: #b22202}
+  #profile ul:first-child {color: #351200}
+
+  #profile ul.alerts a {color: #351200; font-weight: bold}
+    #profile ul.alerts span {display: inline-block; width: 60px}
+  
+  #profile ul.admin a {color: #b22202}
+  #profile ul a:hover	{color: #ff2e00}
+   
+  #profile ul li.tickets	{background: url('../images/icon_ticket.png') no-repeat left; padding-left: 20px}
+  #profile ul li.profile	{background: url('../images/icon_user.png') no-repeat left; padding-left: 20px}
+  #profile ul li.schedule	{background: url('../images/icon_clock.png') no-repeat left; padding-left: 20px} 
+  
+ /* HEADER */
+  
+   
+ #content {width: 710px; float: right; margin: 40px 40px 0 0; padding-bottom: 60px}
+    #content .createNew	{position: absolute; top: 33px; right: 40px;}
+ 
+ /* FOOTER */
+ 
+ footer				{width: 710px; float: right; margin: 40px 0 0 0;}
+ footer aside 		{width: 200px; min-height: 115px; float: left; }
+ footer aside h1	{color: #351200; font-size: 20px; margin-bottom: 15px}
+ footer aside time	{display: block; margin-bottom: 15px}
+ footer aside.centerBox {margin: 0 7px}
+ footer aside ul li	{margin-bottom: 10px}
+ #content footer aside p		{line-height: 160%; margin: 0}
+ 
+ #copyright		{width: 960px; margin: 0 auto; padding: 30px 0; color: #aaa}
+ 
+ 
+ /* CONTENT */
+ 
+ .actions   {margin: 10px 0 50px}
+ 
+ 
+

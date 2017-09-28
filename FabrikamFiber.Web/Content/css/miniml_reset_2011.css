@@ -1,0 +1,132 @@
+/* ----------------------------------------
+Theme Name: HTML5 Miniml Reset
+Theme URI: http://www.blackspike.com
+Description: Blackspike HTML5 miniml reset
+Version: 1.1
+Author: Felix Corke
+Author URI: http://www.blackspike.com
+Last Modified: 2012.01.07
+---------------------------------------- */
+
+
+/* ******* MEYER HTML5 RESET ****** */
+
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+	
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+
+/* ******* RESET ****** */
+
+html, body	{height: 100%;}
+
+table	{border-collapse: collapse; border-spacing: 0;}
+th, td 	{text-align: left; vertical-align: top;}
+
+object, embed 						{outline: none; -moz-outline-style: none;}
+object:focus, embed:focus,:focus  	{outline: none; -moz-outline-style: none;}
+
+ul, ol	{padding-left: 1em; margin: 1em 0 1em 2em}
+
+dl		{margin: 1em 0}
+dt		{font-weight: bold}
+dd,dt	{padding: 0.5em 0}
+
+i, cite, em, var, address {font-style: italic;}
+b, strong	{font-weight: bold}
+
+/* ******* USEFUL THINGS ****** */
+
+hr		 {height:1px; margin: 15px 0; border:none; border-top: 1px solid #ddd; clear:both;}
+
+
+/* ******* FLOATS ******* */
+
+.floatRight				{float:right; margin:0 0 1em 1em}
+.floatLeft				{float:left;  margin:0 1em 1em 0}
+.floatRightNoPadding 	{float:right; margin:0}
+.floatLeftNoPadding  	{float:left;  margin:0}
+
+.right 	{text-align:right;}
+.left 	{text-align:left;}
+.center	{text-align: center;}
+.clear 	{clear:both}
+
+.hide 	{display: none}
+
+/* ******* LINX ******* */
+
+a					{color: #b22202; text-decoration:none;}
+a:link				{}
+/*a:visited			{color: #a7685a}*/
+a:hover				{color: #de2800}
+a:active			{color: #de2800}
+
+
+/* ******* CSS3 LINK HOVER ******* */
+
+a		{-webkit-transition: color 0.1s ease; -ie-transition: color 0.1s ease; -moz-transition: color 0.1s ease; transition: color 0.1s ease; }
+a:hover	{color: #de2800}
+
+
+/* ******* TABLES ******* */
+
+td			 	{border-bottom:1px solid #dedede;}
+th 				{border-bottom:1px solid #c1c1c1; color: black; font-weight: bold}
+td, th			{padding: 10px}
+caption  		{padding: 10px 0}
+
+
+/* ******* FORMS ******* */
+
+label 			{font-weight: bold;}
+fieldset    	{padding: 2em 0; margin: 2em 0; border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; }
+input[type="text"], input[type="password"]   	{width: 300px; margin:0.5em 0.5em 0.5em 0; border:1px solid #bbb; background:#f6f6f6; padding:5px;}
+input:focus     {border:1px solid #999; background:#fff;}
+input           {font-size:1.5em;}
+input[type="submit"] 	{width: 310px; margin: 2em 0; padding: 5px}
+
+textarea            {margin:0.5em 0.5em 0.5em 0;}
+textarea            {border:1px solid #bbb; background:#eee; padding:5px;}
+textarea:focus      {border:1px solid #999; background:#fff;}
+select              {border:1px solid #ccc; background:#f6f6f6;}
+select:focus        {border:1px solid #999; background:#fff;}
+
+
+
+/* ******* PLAIN AND FLATTENED LIST STYLES ******* */
+
+.flatList, nav ul 		{margin: 0; padding: 0; list-style: none}
+.flatList li, nav li	{display: inline;}
+
+
+/* ******* HILITE ******* */
+
+::-moz-selection	{background: #990000; color: #fff;}
+::selection 		{background: #990000; color: #fff;}
+
+

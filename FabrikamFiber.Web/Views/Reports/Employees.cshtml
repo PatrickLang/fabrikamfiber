@@ -1,0 +1,37 @@
+﻿@model FabrikamFiber.Web.ViewModels.EmployeeReportViewModel
+           
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Employees Report</title>
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div>
+        <h2>Employees Report</h2>         
+        <table>
+            <tr>
+                <th>Employee</th>
+                <th>Tickets</th>
+                <th>Current Customer</th>
+            </tr>
+
+            @foreach(var summary in Model.Employees)
+            { 
+                <tr>
+                    <td>@summary.Employee.FullName</td>
+                    <td>@summary.AssignedTickets</td>
+                    <td>@Model.GetCustomerSummary(summary.CurrentCustomer)</td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+﻿@model FabrikamFiber.Web.ViewModels.ScheduleViewModel
+           
+<link rel='stylesheet' type='text/css' href="@Url.Content("~/Content/fullcalendar.css")" />
+<link rel='stylesheet' type='text/css' href="@Url.Content("~/Content/fullcalendar.print.css")" media='print' />
+
+<script type='text/javascript' src="@Url.Content("~/Scripts/fullcalendar.min.js")"></script>
+@{
+    ViewBag.Title = "Schedule";
+}
+<h1>Schedule for @Model.Employee.FullName</h1>
+
+<form action="Schedule-Ticket.aspx" method="post">
+    <div id='calendar1' class='calendar'></div>
+
+    <input type="hidden" name="startTime" value="@ViewBag.StartTime" id="startTime"/>
+    <input type="hidden" name="employeeId" value="@Model.Employee.ID" id="employeeId"/>
+    <input type="hidden" name="serviceTicketId" value="@Model.ServiceTicket.ID" id="serviceTicketId"/>
+    <br />
+
+    <p>
+        <input type="submit" value="Confirm" class="glossyBox"/>
+    </p>
+</form>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#calendar1').fullCalendar({
+            header: { left: '', center: '', right: '' },
+            contentHeight: 500,
+            height: 500,
+            minTime: 8,
+            maxTime: 17,
+            defaultView: 'agendaDay',
+            firstHour: 8,
+            allDaySlot: false,
+            editable: true,
+            events: getEventsFor($("#employeeId").val())
+        });
+    });
+
+    function getEventsFor(id) {
+        var date = new Date();
+        var d = date.getDate();
+        var m = date.getMonth();
+        var y = date.getFullYear();
+
+        var events = [];
+            
+    @foreach (var item in Model.ScheduleItems.OrderBy(i => i.Start)){
+        @Html.Raw(string.Format("events.push({{ title: '[{0}] {1}', start: new Date(y, m, d, {2}, {3}), end: new Date(y, m, d, {4}, {5}), allDay: false }});", string.Format("A0141{0:d2}", item.ServiceTicket.ID), item.ServiceTicket.Title, item.Start.Hour, item.Start.Minute, (item.Start.AddHours(item.WorkHours)).Hour, (item.Start.AddHours(item.WorkHours)).Minute));   
+    }
+
+        var startTime = $("#startTime").val();
+        var startTimeHour = parseInt(startTime, 10);
+        var startTimeMinute = (startTime % 1 == 0) ? 0 : 30;
+
+        events.push({
+            title: '@string.Format("[A0141{0:d2}] {1}", Model.ServiceTicket.ID, Model.ServiceTicket.Title)',
+            start: new Date(y, m, d, startTimeHour, startTimeMinute),
+            end: new Date(y, m, d, startTimeHour + 1, startTimeMinute),
+            allDay: false,
+            backgroundColor: 'red'
+        });
+
+        return events;
+    }
+
+</script>

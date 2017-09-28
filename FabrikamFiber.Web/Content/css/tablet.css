@@ -1,0 +1,8 @@
+﻿    header  {width: 300px; height: 550px; float: left; background-position: 50px top; position: fixed}
+        header hgroup   {top: 220px; left: 40px}
+        header h3       {top: 280px; left: 20px; position: absolute; width: 100%}
+        header nav      {left: 20px; bottom: 0px}
+        header nav a    {display: block; padding: 5px 0;font-size: 24px; border-bottom: 1px solid #c1c1c1}
+        
+    #container   {margin: 30px 30px 0 330px }
+    #copyright  {position: fixed; top: 570px; left:0; margin-left: 40px}

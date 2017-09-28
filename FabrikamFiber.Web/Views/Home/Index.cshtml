@@ -1,0 +1,60 @@
+﻿@model FabrikamFiber.Web.ViewModels.DashboardViewModel
+           
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<h1>Dashboard</h1>
+<p>
+    @Html.ActionLink("Create New", "Create", "ServiceTickets", null, new { @class = "glossyBox createNew" })
+</p>
+
+<table class="dataTable">
+    <tr>
+        <th>Ref</th>
+        <th>Status</th>
+        <th>Escalation</th>
+        <th>Title</th>
+        <th>Assigned To</th>
+        <th>Time Open</th>
+    </tr>
+
+@foreach (var item in Model.Tickets) {
+    <tr class="actionrow">
+         <td>
+            @Html.ActionLink(string.Format("A0141{0:d2}", item.ID), "Details", "ServiceTickets", new { id = item.ID }, new { })
+        </td>
+       <td>
+            @item.Status
+        </td>
+
+        <td>
+            Level @item.EscalationLevel
+        </td>
+
+        <td >
+            <div style="width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">@item.Title</div>
+        </td>
+        <td>
+            @(item.AssignedTo == null ? "None" : item.AssignedTo.FullName)
+        </td>
+        <td>
+            @item.TimeOpen
+        </td>
+    </tr>
+}
+
+</table>
+
+
+<footer>
+      <aside class="glossyBox">
+            @RenderPage("../Shared/_Alerts.cshtml", Model.Alerts)  
+    </aside>
+        <aside class="glossyBox centerBox">
+            @RenderPage("../Shared/_Messages.cshtml", Model.Messages)  
+    </aside>
+        <aside class="glossyBox">
+            @RenderPage("../Shared/_Schedule.cshtml", Model.ScheduleItems)  
+    </aside>
+</footer>
