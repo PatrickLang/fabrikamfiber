@@ -1,0 +1,8 @@
+version: '2.1'
+
+services:
+  fabrikamfiber.web:
+    image: fabrikamfiber.web
+    build:
+      context: .\FabrikamFiber.Web
+      dockerfile: Dockerfile
