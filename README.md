@@ -12,8 +12,42 @@ If you want to try a different orchestrator, follow the steps through the first 
 
 If you have already built the code in Visual Studio, then you can build and run the containers with:
 
-`docker-compose -f "C:\ignite2017\fabrikamfiber\docker-compose.yml" -f "C:\ignite2017\fabrikamfiber\docker-compose.override.yml" up -d`
+```powershell
+docker-compose -f "C:\ignite2017\fabrikamfiber\docker-compose.yml" -f "C:\ignite2017\fabrikamfiber\docker-compose.override.yml" build
+docker-compose -f "C:\ignite2017\fabrikamfiber\docker-compose.yml" -f "C:\ignite2017\fabrikamfiber\docker-compose.override.yml" up -d
+```
 
+
+> Issue: this is currently failing. Use `docker ps` to get the container ID, then `docker exec <containerid> powershell.exe Invoke-WebRequest http://localhost` to see the failure stack
+
+```none
+<!--
+[HttpCompileException]: (0): error CS0016: Could not write to output file
+&#39;c:\Windows\Microsoft.NET\Framework64\v4.0.30319\Temporary ASP.NET
+Files\root\e22c2559\92c7e946\App_global.asax.yoqh0stm.dll&#39; -- &#39;The
+directory name is invalid. &#39;
+   at System.Web.Compilation.AssemblyBuilder.Compile()
+   at System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   at System.Web.Compilation.ApplicationBuildProvider.GetGlobalAsaxBuildResult
+Boolean isPrecompiledApp)
+   at System.Web.Compilation.BuildManager.CompileGlobalAsax()
+   at System.Web.Compilation.BuildManager.EnsureTopLevelFilesCompiled()
+   at System.Web.Compilation.BuildManager.CallAppInitializeMethod()
+   at System.Web.Hosting.HostingEnvironment.Initialize(ApplicationManager
+appManager, IApplicationHost appHost, IConfigMapPathFactory
+configMapPathFactory, HostingEnvironmentParameters hostingParameters,
+PolicyLevel policyLevel, Exception appDomainCreationException)
+[HttpException]: (0): error CS0016: Could not write to output file
+&#39;c:\Windows\Microsoft.NET\Framework64\v4.0.30319\Temporary ASP.NET
+Files\root\e22c2559\92c7e946\App_global.asax.yoqh0stm.dll&#39; -- &#39;The
+directory name is invalid. &#39;
+   at System.Web.HttpRuntime.FirstRequestInit(HttpContext context)
+   at System.Web.HttpRuntime.EnsureFirstRequestInit(HttpContext context)
+   at
+System.Web.HttpRuntime.ProcessRequestNotificationPrivate(IIS7WorkerRequest wr,
+HttpContext context)
+-->
+```
 
 ### Kubernetes
 
