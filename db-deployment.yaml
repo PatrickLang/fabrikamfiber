@@ -1,0 +1,44 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f docker-compose-combined.yml
+    kompose.version: 1.2.0 (99f88ef)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: db
+  name: db
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: db
+    spec:
+      containers:
+      - env:
+        - name: ACCEPT_EULA
+          value: "Y"
+        - name: sa_password
+          value: Password1
+        image: microsoft/mssql-server-windows-developer
+        livenessProbe:
+          exec:
+            command:
+            - sqlcmd
+            - -U
+            - sa
+            - -P
+            - Password1
+            - -Q
+            - select 1
+          failureThreshold: 20
+          periodSeconds: 1
+        name: db
+        ports:
+        - containerPort: 1433
+        resources: {}
+      restartPolicy: Always
+status: {}
