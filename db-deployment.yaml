@@ -27,7 +27,8 @@ spec:
         livenessProbe:
           exec:
             command:
-            - "sqlcmd -U sa -P Password1 -Q select 1"
+            - "sqlcmd.exe"
+            - " -U sa -P Password1 -Q select 1"
           failureThreshold: 20
           periodSeconds: 1
         name: db

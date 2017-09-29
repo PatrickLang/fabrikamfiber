@@ -13,7 +13,7 @@ If you want to try a different orchestrator, follow the steps through the first 
 If you have already built the code in Visual Studio, then you can build and run the containers with:
 
 ```powershell
-docker-compose -f "C:\ignite2017\fabrikamfiber\docker-compose.yml" -f "C:\ignite2017\fabrikamfiber\docker-compose.override.yml" build
+docker-compose -f "C:\ignite2017\fabrikamfiber\docker-compose.yml" -f "C:\ignite2017\fabrikamfiber\docker-compose.override.yml" build --no-cache
 docker-compose -f "C:\ignite2017\fabrikamfiber\docker-compose.yml" -f "C:\ignite2017\fabrikamfiber\docker-compose.override.yml" up -d
 ```
 

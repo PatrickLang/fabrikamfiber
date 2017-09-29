@@ -7,13 +7,15 @@ metadata:
   creationTimestamp: null
   labels:
     io.kompose.service: fabrikamfiber.web
-  name: fabrikamfiber.web
+  name: fabrikamfiberweb
 spec:
   ports:
   - name: "80"
     port: 80
     targetPort: 80
+  type: "LoadBalancer"
   selector:
     io.kompose.service: fabrikamfiber.web
+
 status:
   loadBalancer: {}

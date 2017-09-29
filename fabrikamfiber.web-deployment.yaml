@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - image: patricklang/fabrikamfiber.web:latest
-        name: fabrikamfiber.web
+        name: fabrikamfiberweb
         ports:
         - containerPort: 80
         resources: {}
