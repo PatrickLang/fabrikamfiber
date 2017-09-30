@@ -21,5 +21,20 @@ docker-compose -f "C:\ignite2017\fabrikamfiber\docker-compose.yml" -f "C:\ignite
 
 ### Kubernetes
 
+This will create 2 deployments - one for web, one for the database. This is pretty much a direct translation of the docker-compose files using [kompose](https://github.com/kubernetes/kompose). It's not production secure since passwords are passed in environment variables.
+
+Description                         | Deployment Name              | Service
+------------------------------------|------------------------------|-------------------------
+Web site behind Azure load balancer | fabrikamfiber.web            | fabrikamfiberweb
+SQL Server express database         | db                           | db
+
+All 4 can be deployed using these steps:
+
+```bash
+kubectl apply -f db-deployment.yaml
+kubectl apply -f db-service.yaml
+kubectl apply -f fabrikamfiber.web-deployment.yaml
+kubectl apply -f fabrikamfiber.web-service.yaml
+```
 
 ### Docker Swarm
