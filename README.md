@@ -17,7 +17,7 @@ docker-compose -f "C:\ignite2017\fabrikamfiber\docker-compose.yml" -f "C:\ignite
 docker-compose -f "C:\ignite2017\fabrikamfiber\docker-compose.yml" -f "C:\ignite2017\fabrikamfiber\docker-compose.override.yml" up -d
 ```
 
-
+> Note: When building "Debug" in Visual Studio, it doesn't actually put the website code into the container. It's mapped in as a volume. If you want to build a container with everything included, choose the "Release" target before building.
 
 ### Kubernetes
 
@@ -31,10 +31,41 @@ SQL Server express database         | db                           | db
 All 4 can be deployed using these steps:
 
 ```bash
-kubectl apply -f db-deployment.yaml
-kubectl apply -f db-service.yaml
-kubectl apply -f fabrikamfiber.web-deployment.yaml
-kubectl apply -f fabrikamfiber.web-service.yaml
+kubectl apply -n ff -f db-deployment.yaml
+kubectl apply -n ff -f db-service.yaml
+kubectl apply -n ff -f fabrikamfiber.web-deployment.yaml
+kubectl apply -n ff -f fabrikamfiber.web-service.yaml
+```
+
+> Bug? dns suffix isn't filled out so the web isn't discovering the db
+
+```none
+Ethernet adapter vEthernet (71e9952fd2588121a7e5ec3b14f7382161f0fd3128d1c923a726932f327df003_l2bridge):
+
+   Connection-specific DNS Suffix  . :
+   Description . . . . . . . . . . . : Hyper-V Virtual Ethernet Adapter #3
+   Physical Address. . . . . . . . . : 00-15-5D-0C-CC-06
+   DHCP Enabled. . . . . . . . . . . : No
+   Autoconfiguration Enabled . . . . : Yes
+   Link-local IPv6 Address . . . . . : fe80::8cdd:d393:1384:e4c8%24(Preferred)
+   IPv4 Address. . . . . . . . . . . : 10.244.3.149(Preferred)
+   Subnet Mask . . . . . . . . . . . : 255.255.255.0
+   Default Gateway . . . . . . . . . : 10.240.0.1
+   DNS Servers . . . . . . . . . . . : 10.0.0.10
+   NetBIOS over Tcpip. . . . . . . . : Disabled
+
+C:\inetpub\wwwroot>nslookup db
+Server:  kube-dns.kube-system.svc.cluster.local
+Address:  10.0.0.10
+
+*** kube-dns.kube-system.svc.cluster.local can't find db: Non-existent domain
+
+C:\inetpub\wwwroot>nslookup db.ff.svc.cluster.local
+Server:  kube-dns.kube-system.svc.cluster.local
+Address:  10.0.0.10
+
+Name:    db.ff.svc.cluster.local
+Address:  10.0.246.133
 ```
 
 ### Docker Swarm
