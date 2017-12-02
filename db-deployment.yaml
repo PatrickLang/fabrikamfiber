@@ -24,13 +24,13 @@ spec:
         - name: sa_password
           value: Password1
         image: patricklang/mssql-server-windows-express:1709
-        livenessProbe:
-          exec:
-            command:
-            - "sqlcmd.exe"
-            - " -U sa -P Password1 -Q select 1"
-          failureThreshold: 20
-          periodSeconds: 1
+        #livenessProbe:
+        #  exec:
+        #    command:
+        #    - "sqlcmd.exe"
+        #    - " -U sa -P Password1 -Q select 1"
+        #  failureThreshold: 20
+        #  periodSeconds: 1
         name: db
         ports:
         - containerPort: 1433
