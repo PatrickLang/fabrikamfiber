@@ -37,7 +37,7 @@ kubectl apply -n ff -f fabrikamfiber.web-deployment.yaml
 kubectl apply -n ff -f fabrikamfiber.web-service.yaml
 ```
 
-> Bug? dns suffix isn't filled out so the web isn't discovering the db
+> Need a bug link - dns suffix isn't filled out so the web isn't discovering the db
 
 ```none
 Ethernet adapter vEthernet (71e9952fd2588121a7e5ec3b14f7382161f0fd3128d1c923a726932f327df003_l2bridge):
@@ -70,8 +70,11 @@ Address:  10.0.246.133
 
 #### Issues to resolve before merging
 
-- [ ] Figure out why DNS suffix was missing and remove `.ff.svc.cluster.local` from web.config
-- [ ] Replace `patricklang/mssql-server-windows-express:1709-3` with an official image in db-deployment.yml
+- [ ] Figure out why DNS suffix was missing from pods and remove workarounds
+  - Remove `.ff.svc.cluster.local` from web.config
+  - Remove `-n ff` from above deployments. It should work in any namespace
+- [ ] Use a fixed SQL Server Express image for Windows Server 1709. Right now it's using [my fork](https://github.com/PatrickLang/mssql-docker/tree/windows1709)
+  - Replace `patricklang/mssql-server-windows-express:1709-4` with an official image in db-deployment.yml
 
 
 ### Docker Swarm
