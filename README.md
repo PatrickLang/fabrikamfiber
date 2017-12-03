@@ -68,4 +68,12 @@ Name:    db.ff.svc.cluster.local
 Address:  10.0.246.133
 ```
 
+#### Issues to resolve before merging
+
+- [ ] Figure out why DNS suffix was missing and remove `.ff.svc.cluster.local` from web.config
+- [ ] Replace `patricklang/mssql-server-windows-express:1709-2` with an official image in db-deployment.yml
+
+
 ### Docker Swarm
+
+> Work in progress
