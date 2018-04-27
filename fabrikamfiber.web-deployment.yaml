@@ -24,4 +24,6 @@ spec:
         - containerPort: 80
         resources: {}
       restartPolicy: Always
+      nodeSelector:
+        beta.kubernetes.io/os: windows
 status: {}
