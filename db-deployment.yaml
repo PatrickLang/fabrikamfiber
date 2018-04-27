@@ -23,7 +23,7 @@ spec:
           value: "Y"
         - name: sa_password
           value: Password1
-        image: patricklang/mssql-server-windows-express:1709-4
+        image: microsoft/mssql-server-windows-developer:1709
         #livenessProbe:
         #  exec:
         #    command:
