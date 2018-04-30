@@ -21,7 +21,7 @@ spec:
       - env:
         - name: ACCEPT_EULA
           value: "Y"
-        - name: sa_password
+        - name: SA_PASSWORD
           value: "yourStrong(!)Password"
         image: microsoft/mssql-server-linux:latest
         #livenessProbe:
