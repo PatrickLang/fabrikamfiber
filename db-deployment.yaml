@@ -23,7 +23,7 @@ spec:
           value: "Y"
         - name: sa_password
           value: Password1
-        image: microsoft/mssql-server-windows-developer:1709
+        image: microsoft/mssql-server-linux:latest
         #livenessProbe:
         #  exec:
         #    command:
@@ -35,8 +35,10 @@ spec:
         ports:
         - containerPort: 1433
         resources: {}
+        securityContext:
+          privileged: true
       nodeSelector:
-        beta.kubernetes.io/os: windows
+        beta.kubernetes.io/os: linux
 
       restartPolicy: Always
 status: {}

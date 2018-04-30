@@ -23,6 +23,8 @@ spec:
         ports:
         - containerPort: 80
         resources: {}
+        securityContext:
+          privileged: true
       restartPolicy: Always
       nodeSelector:
         beta.kubernetes.io/os: windows
