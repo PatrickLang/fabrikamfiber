@@ -98,12 +98,12 @@ Steps
 ```
 oc get node
 alias oc='oc -n plang1'
-oc create -f db-secret.yaml
-oc create -f db-deployment.yaml
-oc create -f db-service.yaml
-oc create -f fabrikamfiber.web-deployment.yaml
-oc create -f fabrikamfiber.web-service.yaml
-oc create -f fabrikamfiber.web-expose.yaml
+oc create -f ocp/db-secret.yaml
+oc create -f ocp/db-deployment.yaml
+oc create -f ocp/db-service.yaml
+oc create -f ocp/fabrikamfiber.web-deployment.yaml
+oc create -f ocp/fabrikamfiber.web-service.yaml
+oc create -f ocp/fabrikamfiber.web-expose.yaml
 ```
 
 Teardown
