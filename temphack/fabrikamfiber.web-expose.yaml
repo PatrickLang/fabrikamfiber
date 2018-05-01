@@ -1,0 +1,20 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  labels:
+    io.kompose.service: fabrikamfiber.web
+  name: ff
+spec:
+  host: www.13.91.33.49.xip.io
+  port:
+    targetPort: "80"
+  to:
+    kind: Service
+    name: fabrikamfiberweb
+    weight: 100
+  wildcardPolicy: None
+status:
+  ingress:
+    host: www.13.91.33.49.xip.io
+    routerName: router
+    wildcardPolicy: None
