@@ -86,6 +86,31 @@ Address:  10.0.246.133
   - Replace `patricklang/mssql-server-windows-express:1709-4` with an official image in db-deployment.yml
 
 
+### OpenShift Origin 3.9
+
+_Prerequisites_
+
+- [oc.exe](https://github.com/openshift/origin/releases/download/v3.9.0/openshift-origin-client-tools-v3.9.0-191fece-windows.zip)
+- [kubectl.exe](https://storage.googleapis.com/kubernetes-release/release/v1.10.0/bin/windows/amd64/kubectl.exe)
+
+Steps
+
+```
+alias oc='oc -n plang1'
+oc get pod
+oc create -f db-deployment.yaml
+oc create -f db-service.yaml
+oc create -f temphack/fabrikamfiber.web-deployment.yaml
+oc create -f fabrikamfiber.web-service.yaml
+oc create -f temphack/fabrikamfiber.web-expose.yaml
+```
+
+Teardown
+
+```
+
+```
+
 ### Docker Swarm
 
 > Work in progress
