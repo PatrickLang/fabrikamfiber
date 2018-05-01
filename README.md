@@ -98,6 +98,7 @@ Steps
 ```
 alias oc='oc -n plang1'
 oc get pod
+oc create -f db-secret.yaml
 oc create -f db-deployment.yaml
 oc create -f db-service.yaml
 oc create -f temphack/fabrikamfiber.web-deployment.yaml
