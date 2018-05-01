@@ -96,22 +96,23 @@ _Prerequisites_
 Steps
 
 ```
+oc get node
 alias oc='oc -n plang1'
-oc get pod
 oc create -f db-secret.yaml
 oc create -f db-deployment.yaml
 oc create -f db-service.yaml
-oc create -f temphack/fabrikamfiber.web-deployment.yaml
+oc create -f fabrikamfiber.web-deployment.yaml
 oc create -f fabrikamfiber.web-service.yaml
-oc create -f temphack/fabrikamfiber.web-expose.yaml
+oc create -f fabrikamfiber.web-expose.yaml
 ```
 
 Teardown
 
 ```
-
+oc delete route ff
+oc delete service db
+oc delete service fabrikamfiberweb
+oc delete deployment db
+oc delete deployment fabrikamfiber.web
+oc delete secret mssql
 ```
-
-### Docker Swarm
-
-> Work in progress
