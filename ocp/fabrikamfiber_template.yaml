@@ -1,0 +1,142 @@
+---
+kind: Template
+apiVersion: v1
+metadata:
+  name: fabrikam-fiber
+  annotations:
+    description: An example, cross-platform .NET Framework 4 project. Fabrikam Fiber was originally started by Richard Hundhausen and distributed on CodePlex as an application for training users in Visual Studio and development practices.
+    iconClass: icon-dotnet
+    openshift.io/display-name: Fabrikam Fiber
+    openshift.io/documentation-url: https://github.com/PatrickLang/fabrikamfiber/tree/ocpdemo
+    openshift.io/long-description: An example, cross-platform .NET Framework 4 project. Fabrikam Fiber was originally started by Richard Hundhausen and distributed on CodePlex as an application for training users in Visual Studio and development practices.
+    openshift.io/provider-display-name: Fabrikam
+    openshift.io/support-url: https://github.com/PatrickLang/fabrikamfiber/issues
+    tags: quickstart,.net
+    template.openshift.io/bindable: 'false'
+message: |-
+  The following service(s) have been created in your project: fabrikamfiberweb, db.
+
+  For more information about using this template, including OpenShift considerations, see https://github.com/PatrickLang/fabrikamfiber/blob/ocpdemo/README.md.
+labels:
+  template: fabrikam-fiber
+objects:
+- kind: Secret
+  apiVersion: v1
+  data:
+    SA_PASSWORD: eW91clN0cm9uZyghKVBhc3N3b3Jk
+  metadata:
+    name: mssql
+- kind: Deployment
+  apiVersion: extensions/v1beta1
+  metadata:
+    annotations:
+      kompose.cmd: kompose convert -f docker-compose-combined.yml
+      kompose.version: 1.2.0 (99f88ef)
+    labels:
+      io.kompose.service: db
+    name: db
+  spec:
+    replicas: 1
+    template:
+      metadata:
+        labels:
+          io.kompose.service: db
+      spec:
+        containers:
+        - env:
+          - name: ACCEPT_EULA
+            value: "Y"
+          - name: SA_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mssql
+                key: SA_PASSWORD
+          image: microsoft/mssql-server-linux:latest
+          name: db
+          ports:
+          - containerPort: 1433
+          securityContext:
+            privileged: true
+        nodeSelector:
+          beta.kubernetes.io/os: linux
+        restartPolicy: Always
+- kind: Service
+  apiVersion: v1
+  metadata:
+    annotations:
+      kompose.cmd: kompose convert -f docker-compose-combined.yml
+      kompose.version: 1.2.0 (99f88ef)
+    labels:
+      io.kompose.service: db
+    name: db
+  spec:
+    ports:
+    - name: "1433"
+      port: 1433
+      targetPort: 1433
+    selector:
+      io.kompose.service: db
+- kind: Deployment
+  apiVersion: extensions/v1beta1
+  metadata:
+    annotations:
+      kompose.cmd: kompose convert -f docker-compose-combined.yml
+      kompose.version: 1.2.0 (99f88ef)
+    labels:
+      io.kompose.service: fabrikamfiber.web
+    name: fabrikamfiber.web
+  spec:
+    replicas: 1
+    template:
+      metadata:
+        labels:
+          io.kompose.service: fabrikamfiber.web
+      spec:
+        containers:
+        - image: patricklang/fabrikamfiber.web:1709-4.7.1
+          name: fabrikamfiberweb
+          ports:
+          - containerPort: 80
+          env:
+          - name: DB_SA_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mssql
+                key: SA_PASSWORD
+          securityContext:
+            privileged: true
+        restartPolicy: Always
+        nodeSelector:
+          beta.kubernetes.io/os: windows
+- kind: Service
+  apiVersion: v1
+  metadata:
+    annotations:
+      kompose.cmd: kompose convert -f docker-compose-combined.yml
+      kompose.version: 1.2.0 (99f88ef)
+    labels:
+      io.kompose.service: fabrikamfiber.web
+    name: fabrikamfiberweb
+  spec:
+    ports:
+    - name: "80"
+      port: 80
+      targetPort: 80
+    type: "LoadBalancer"
+    selector:
+      io.kompose.service: fabrikamfiber.web
+- kind: Route
+  apiVersion: v1
+  metadata:
+    labels:
+      io.kompose.service: fabrikamfiber.web
+    name: ff
+  spec:
+    host: www.13.91.33.49.xip.io
+    port:
+      targetPort: "80"
+    to:
+      kind: Service
+      name: fabrikamfiberweb
+      weight: 100
+    wildcardPolicy: None
