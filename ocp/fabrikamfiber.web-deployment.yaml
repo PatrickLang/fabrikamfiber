@@ -22,6 +22,12 @@ spec:
         name: fabrikamfiberweb
         ports:
         - containerPort: 80
+        env:
+        - name: DB_SA_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mssql
+              key: SA_PASSWORD
         resources: {}
         securityContext:
           privileged: true
