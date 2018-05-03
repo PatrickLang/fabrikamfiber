@@ -26,3 +26,22 @@ docker-compose -f "docker-compose.yml" -f "docker-compose.override.yml" up -d
 ```
  
 > Note: When you want to update the Windows and .Net container layers later, run `docker pull` on the base image given in the Dockerfile. In this case, it's `microsoft/aspnet:4.7.1-windowsservercore-1709`
+
+ 
+## Kubernetes
+ 
+This will create 2 deployments - one for web, one for the database. This is pretty much a direct translation of the docker-compose files using [kompose](https://github.com/kubernetes/kompose). It's not production secure since passwords are passed in environment variables.
+ 
+Description                         | Deployment Name              | Service
+------------------------------------|------------------------------|-------------------------
+Web site behind Azure load balancer | fabrikamfiber.web            | fabrikamfiberweb
+SQL Server express database         | db                           | db
+ 
+All 4 can be deployed using these steps:
+ 
+```bash
+kubectl apply -n ff -f k8s/db-deployment.yaml
+kubectl apply -n ff -f k8s/db-service.yaml
+kubectl apply -n ff -f k8s/fabrikamfiber.web-deployment.yaml
+kubectl apply -n ff -f k8s/fabrikamfiber.web-service.yaml
+```
