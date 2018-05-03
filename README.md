@@ -15,7 +15,7 @@ If you want to try a different orchestrator, follow the steps through the first 
 
 
 1. Find "Developer Command Prompt for VS 2017" on the Start menu or by searching
-2. Run `msbuild.exe ./FabrikamFiber.CallCenter.sln /P:BuildConfiguration=release /t:Rebuild`
+2. Run `msbuild.exe ./FabrikamFiber.CallCenter.sln /P:BuildConfiguration=release /t:Rebuild` - **this only seems to work after you've built in Visual Studio at least once. I'm not sure why**
 
 > Note: When building "Debug" in Visual Studio, it doesn't actually put the website code into the container. It's mapped in as a volume. If you want to build a container with everything included, choose the "Release" target before building.
 
