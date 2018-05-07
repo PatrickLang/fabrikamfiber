@@ -8,7 +8,7 @@ namespace FabrikamFiber.Web.App_Start
     using FabrikamFiber.DAL.Data;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
     using Ninject;
-    using Ninject.Web.Mvc;
+    using Ninject.Web.Common.WebHost;
 
     public static class NinjectMVC3 
     {

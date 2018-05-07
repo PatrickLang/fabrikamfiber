@@ -6,10 +6,14 @@ services:
       - "80"
     depends_on:
       - db
-  db:
-    image: microsoft/mssql-server-windows-developer
     environment:
-      sa_password: "Password1"
+      DB_SA_PASSWORD: "Password1"
+      DB_SERVICE_HOST: "db"
+      DB_SERVICE_PORT: 1433
+  db:
+    image: microsoft/mssql-server-windows-developer:1709
+    environment:
+      SA_PASSWORD: "Password1"
       ACCEPT_EULA: "Y"
     ports:
       - "1433"
