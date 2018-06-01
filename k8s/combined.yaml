@@ -91,8 +91,6 @@ spec:
               name: mssql
               key: SA_PASSWORD
         resources: {}
-        securityContext:
-          privileged: true
       restartPolicy: Always
       nodeSelector:
         beta.kubernetes.io/os: windows
