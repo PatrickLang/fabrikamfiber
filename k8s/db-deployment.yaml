@@ -26,11 +26,11 @@ spec:
             secretKeyRef:
               name: mssql
               key: SA_PASSWORD
-        image: microsoft/mssql-server-windows-developer:1709
+        image: microsoft/mssql-server-linux:2017-latest
         name: db
         ports:
         - containerPort: 1433
         resources: {}
       nodeSelector:
-        beta.kubernetes.io/os: windows
+        beta.kubernetes.io/os: linux
       restartPolicy: Always
