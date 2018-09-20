@@ -18,7 +18,7 @@ spec:
         io.kompose.service: fabrikamfiber.web
     spec:
       containers:
-      - image: patricklang/fabrikamfiber.web:1803-4.7.2
+      - image: patricklang/fabrikamfiber.web:1803-4.7.2-cf929b
         name: fabrikamfiberweb
         ports:
         - containerPort: 80
