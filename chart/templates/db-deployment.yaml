@@ -18,7 +18,7 @@ spec:
         - name: SA_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: mssql
+              name: {{ template "fullname" . }}
               key: SA_PASSWORD
         image: patricklang/mssql-server-windows-developer:2017-1803
         name: db
