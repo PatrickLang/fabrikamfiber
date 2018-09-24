@@ -20,11 +20,29 @@ spec:
         ports:
         - containerPort: 80
         env:
+        {{ if .Values.mssql.developerEdition }}
         - name: DB_SA_PASSWORD
           valueFrom:
             secretKeyRef:
               name: {{ template "fullname" . }}-mssql-secret
               key: SA_PASSWORD
+        {{ else }}
+        - name: DB_SA_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ template "fullname" . }}-mssql-secret
+              key: password
+        - name: DB_SERVICE_HOST
+          valueFrom:
+            secretKeyRef:
+              name: {{ template "fullname" . }}-mssql-secret
+              key: host
+        - name: DB_SERVICE_PORT
+          valueFrom:
+            secretKeyRef:
+              name: {{ template "fullname" . }}-mssql-secret
+              key: port
+        {{ end }}
         resources: {}
       restartPolicy: Always
       nodeSelector:
