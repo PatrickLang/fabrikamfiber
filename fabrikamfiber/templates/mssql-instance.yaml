@@ -14,7 +14,9 @@ spec:
   parameters:
     location: {{ .Values.mssql.azure.location }}
     resourceGroup: {{ .Release.Namespace }}
-    dtus: {{ .Values.mssql.dtus }}
+    {{ if ne .Values.mssql.azure.servicePlan "basic" }}
+    dtus: {{ .Values.mssql.azure.dtus }}
+    {{ end }}
     firewallRules:
     - startIPAddress: "0.0.0.0"
       endIPAddress: "255.255.255.255"

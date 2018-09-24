@@ -12,7 +12,7 @@ mssql:
   ## Set to false to use Azure SQL
   developerEdition: false
   azure:
-    ## ref: http://docs.azure.com/.../mssql
+    ## ref: https://github.com/Azure/open-service-broker-azure/blob/master/docs/modules/mssql.md
     ## The Azure region in which to deploy Azure Database for MySQL
     location: westus2
     ## The plan to request for Azure Database for MySQL
