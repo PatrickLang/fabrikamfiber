@@ -47,6 +47,11 @@ helm repo add azure https://kubernetescharts.blob.core.windows.net/azure
 helm install azure/open-service-broker-azure --name osba --namespace osba --set azure.subscriptionId=$ENV:AZURE_SUBSCRIPTION_ID --set azure.tenantId=$ENV:AZURE_TENANT_ID --set azure.clientId=$ENV:AZURE_CLIENT_ID --set azure.clientSecret=$ENV:AZURE_CLIENT_SECRET`
 ```
 
+```powershell
+helm package .\fabrikamfiber\
+helm install .\fabrikamfiber\
+```
+
 ## Remaining Work
 
 - [ ] Test `developerEdition: true`
