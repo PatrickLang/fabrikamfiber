@@ -26,7 +26,21 @@ spec:
             secretKeyRef:
               name: {{ template "fullname" . }}-mssql-secret
               key: SA_PASSWORD
+        - name: DB_SA_USER
+          value: "sa"
+        - name: DB_DATABASE_NAME
+          value: "FabrikamFiber"
         {{ else }}
+        - name: DB_DATABASE_NAME
+          valueFrom:
+            secretKeyRef:
+              name: {{ template "fullname" . }}-mssql-secret
+              key: database
+        - name: DB_SA_USER
+          valueFrom:
+            secretKeyRef:
+              name: {{ template "fullname" . }}-mssql-secret
+              key: user
         - name: DB_SA_PASSWORD
           valueFrom:
             secretKeyRef:
