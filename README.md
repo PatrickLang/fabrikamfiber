@@ -20,12 +20,20 @@ If you want to try a different orchestrator, follow the steps through the first 
  
 Once you built the code in Visual Studio or with msbuild, then CD back to the solution folder, and run
  
+
 ```powershell
-docker-compose -f "docker-compose.yml" -f "docker-compose.override.yml" build --no-cache
-docker-compose -f "docker-compose.yml" -f "docker-compose.override.yml" up -d
-```
- 
+Remove-Item -Recurse -Force MyCompany.Visitors.Web\bin\Release\Publish
+msbuild FabrikamFiber.CallCenter.sln /t:clean /p:Configuration=Release
+#msbuild MyCompany.Visitors.Server.sln /t:build /p:Configuration=Release
+msbuild FabrikamFiber.CallCenter.sln /t:build /p:Configuration=Release /p:PublishProfile=FolderProfile /p:DeployOnBuild=true
+cd FabrikamFiber.Web
+
+docker build --no-cache -t ff .
+docker run --rm -p 8080:80 -d ff
+``` 
 > Note: When you want to update the Windows and .Net container layers later, run `docker pull` on the base image given in the Dockerfile. In this case, it's `microsoft/aspnet:4.7.1-windowsservercore-1709`
+
+
 
  
 ## Kubernetes
