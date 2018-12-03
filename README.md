@@ -24,7 +24,6 @@ Once you built the code in Visual Studio or with msbuild, then CD back to the so
 ```powershell
 Remove-Item -Recurse -Force MyCompany.Visitors.Web\bin\Release\Publish
 msbuild FabrikamFiber.CallCenter.sln /t:clean /p:Configuration=Release
-#msbuild MyCompany.Visitors.Server.sln /t:build /p:Configuration=Release
 msbuild FabrikamFiber.CallCenter.sln /t:build /p:Configuration=Release /p:PublishProfile=FolderProfile /p:DeployOnBuild=true
 cd FabrikamFiber.Web
 
