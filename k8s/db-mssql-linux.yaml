@@ -26,7 +26,10 @@ spec:
             secretKeyRef:
               name: mssql
               key: SA_PASSWORD
-        image: patricklang/mssql-server-windows-developer:2017-1803
+        # This will default to Developer edition. For production, get a license and uncomment this.
+        # - name: MSSQL_PID
+        #   value: "Standard"
+        image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
         name: db
         ports:
         - containerPort: 1433
