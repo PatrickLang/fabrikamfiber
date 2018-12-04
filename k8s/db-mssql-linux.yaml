@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db
+spec:
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: db
+  template:
+    metadata:
+      labels:
+        app: db
+    spec:
+      containers:
+      - env:
+        - name: ACCEPT_EULA
+          value: "Y"
+        - name: SA_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mssql
+              key: SA_PASSWORD
+        # This will default to Developer edition. For production, get a license and uncomment this.
+        # - name: MSSQL_PID
+        #   value: "Standard"
+        image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+        name: db
+        ports:
+        - containerPort: 1433
+        resources:
+          limits:
+            cpu: 1
+            memory: 2Gi
+          requests:
+            cpu: .1
+            memory: 300m
+      nodeSelector:
+        beta.kubernetes.io/os: linux
+      # For production, you would also need a persistent volume at /var/opt/mssql

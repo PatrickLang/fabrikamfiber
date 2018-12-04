@@ -6,8 +6,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FabrikamFiber.Web", "Fabrik
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FabrikamFiber.DAL", "FabrikamFiber.DAL\FabrikamFiber.DAL.csproj", "{64058BA2-30B8-4A35-8D4C-CB4F6D6D7442}"
 EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{CE57F492-A389-4063-B7FB-97FE82892BF7}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,12 +20,11 @@ Global
 		{64058BA2-30B8-4A35-8D4C-CB4F6D6D7442}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{64058BA2-30B8-4A35-8D4C-CB4F6D6D7442}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{64058BA2-30B8-4A35-8D4C-CB4F6D6D7442}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CE57F492-A389-4063-B7FB-97FE82892BF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CE57F492-A389-4063-B7FB-97FE82892BF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CE57F492-A389-4063-B7FB-97FE82892BF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CE57F492-A389-4063-B7FB-97FE82892BF7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C7CCEFE7-96E7-471A-9F4C-D8682D04658D}
 	EndGlobalSection
 EndGlobal
