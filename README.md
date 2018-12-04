@@ -53,6 +53,7 @@ SQL Server express database         | db                           | db
 All 4 can be deployed using these steps:
  
 ```bash
+kubectl apply -n ff -f k8s/db-secret.yaml
 kubectl apply -n ff -f k8s/db-mssql-linux.yaml
 kubectl apply -n ff -f k8s/db-service.yaml
 kubectl apply -n ff -f k8s/fabrikamfiber.web-deployment.yaml
