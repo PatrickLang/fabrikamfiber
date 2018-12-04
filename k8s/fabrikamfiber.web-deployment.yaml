@@ -13,7 +13,7 @@ spec:
         app: fabrikamfiber.web
     spec:
       containers:
-      - image: patricklang/fabrikamfiber.web:1809temp2
+      - image: patricklang/fabrikamfiber.web:1809
         name: fabrikamfiberweb
         ports:
         - containerPort: 80
