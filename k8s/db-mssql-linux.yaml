@@ -35,5 +35,5 @@ spec:
         - containerPort: 1433
         resources: {}
       nodeSelector:
-        beta.kubernetes.io/os: windows
+        beta.kubernetes.io/os: linux
       restartPolicy: Always
