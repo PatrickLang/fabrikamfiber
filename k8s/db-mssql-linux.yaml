@@ -33,7 +33,13 @@ spec:
         name: db
         ports:
         - containerPort: 1433
-        resources: {}
+        resources:
+          limits:
+            cpu: 1
+            memory: 2Gi
+          requests:
+            cpu: .1
+            memory: 300m
       nodeSelector:
         beta.kubernetes.io/os: linux
       restartPolicy: Always

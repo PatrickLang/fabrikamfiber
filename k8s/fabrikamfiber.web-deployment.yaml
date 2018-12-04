@@ -28,7 +28,13 @@ spec:
             secretKeyRef:
               name: mssql
               key: SA_PASSWORD
-        resources: {}
+        resources:
+          limits:
+            cpu: 1
+            memory: 800m
+          requests:
+            cpu: .1
+            memory: 300m
       restartPolicy: Always
       nodeSelector:
         beta.kubernetes.io/os: windows
