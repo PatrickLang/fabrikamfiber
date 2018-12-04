@@ -4,7 +4,7 @@ This project was originally started by Richard Hundhausen and distributed on [Co
 
 I have archived it here since I frequently use it for examples rebuilding existing applications to run in containers.
 
-### Building from the command line
+## Building this project
   
 What's needed:
 
@@ -12,6 +12,8 @@ What's needed:
 - Visual Studio 2017 (any edition)
 - .Net Framework 4.7.2 SDK, ASP.Net Targeting Pack for Visual Studio
 - Docker
+
+### Steps to build
 
 Find "Developer Command Prompt for VS 2017" on the Start menu or by searching for it. Once the command window is open, change to the directory with the source code, and run these steps.
  
@@ -29,7 +31,18 @@ docker run --rm -p 8080:80 -d ff
 
  
 ## Kubernetes
- 
+
+What's needed
+
+- Kubernetes 1.10 or later cluster
+- At least 1 Linux amd64 node, and 1 Windows amd64 node
+- kubectl
+- The files at k8s/* in this repo
+
+The latest step by step guide to deploying this on Azure at http://aka.ms/windowscontainers/kubernetes
+
+### Steps to deploy
+
 This will create 2 deployments - one for web, one for the database, along with a shared secret. 
  
 Description                         | Deployment Name              | Service
@@ -46,7 +59,9 @@ kubectl apply -n ff -f k8s/fabrikamfiber.web-deployment.yaml
 kubectl apply -n ff -f k8s/fabrikamfiber.web-service.yaml
 ```
 
-## Step by Step - Getting Started & Azure Service Fabric
+## Other Resources
+
+### Step by Step - Getting Started & Azure Service Fabric
 
 There's a great guide on how to use this to test building Docker containers and deploying them to Azure Service Fabric [here](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-host-app-in-a-container).
 
