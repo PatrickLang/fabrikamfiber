@@ -1,21 +1,16 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    kompose.cmd: kompose convert -f docker-compose-combined.yml
-    kompose.version: 1.2.0 (99f88ef)
-  creationTimestamp: null
-  labels:
-    io.kompose.service: fabrikamfiber.web
   name: fabrikamfiber.web
 spec:
+  selector:
+    matchLabels:
+      app: fabrikamfiber.web
   replicas: 1
-  strategy: {}
   template:
     metadata:
-      creationTimestamp: null
       labels:
-        io.kompose.service: fabrikamfiber.web
+        app: fabrikamfiber.web
     spec:
       containers:
       - image: patricklang/fabrikamfiber.web:1809temp2
@@ -35,7 +30,5 @@ spec:
           requests:
             cpu: .1
             memory: 300m
-      restartPolicy: Always
       nodeSelector:
         beta.kubernetes.io/os: windows
-status: {}
