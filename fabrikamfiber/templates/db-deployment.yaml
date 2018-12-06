@@ -1,0 +1,31 @@
+{{- if .Values.mssql.developerEdition }}
+apiVersion: extensions/v1beta1
+kind: Deployment
+  name: {{ template "fullname" . }}-mssql-instance
+  labels:
+    app: {{ template "fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+spec:
+  replicas: 1
+  template:
+    spec:
+      containers:
+      - env:
+        - name: ACCEPT_EULA
+          value: "Y"
+        - name: SA_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ template "fullname" . }}
+              key: SA_PASSWORD
+        image: patricklang/mssql-server-windows-developer:2017-1803
+        name: db
+        ports:
+        - containerPort: 1433
+        resources: {}
+      nodeSelector:
+        beta.kubernetes.io/os: windows
+      restartPolicy: Always
+{{- end }}
