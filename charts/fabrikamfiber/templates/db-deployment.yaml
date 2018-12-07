@@ -20,12 +20,18 @@ spec:
             secretKeyRef:
               name: {{ template "fullname" . }}
               key: SA_PASSWORD
-        image: patricklang/mssql-server-windows-developer:2017-1803
+        image: {{ .Values.mssql.image }} 
         name: db
         ports:
         - containerPort: 1433
-        resources: {}
+        resources:
+          limits:
+            cpu: 1
+            memory: 2Gi
+          requests:
+            cpu: .1
+            memory: 300m
       nodeSelector:
-        beta.kubernetes.io/os: windows
-      restartPolicy: Always
+        beta.kubernetes.io/os: {{ .Values.mssql.os }} 
+      restartPolicy: Always      
 {{- end }}
