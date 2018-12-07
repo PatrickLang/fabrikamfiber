@@ -10,7 +10,7 @@ imagePullPolicy: IfNotPresent
 mssql:
   ## Set to true to use a SQL Server 2017 developer edition database for test deployments
   ## Set to false to use Azure SQL
-  developerEdition: false
+  developerEdition: true
   image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
   os: linux
   azure:
