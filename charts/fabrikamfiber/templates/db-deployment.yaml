@@ -1,6 +1,7 @@
 {{- if .Values.mssql.developerEdition }}
 apiVersion: extensions/v1beta1
 kind: Deployment
+metadata:
   name: {{ template "fullname" . }}-mssql-instance
   labels:
     app: {{ template "fullname" . }}
@@ -12,7 +13,9 @@ spec:
   template:
     spec:
       containers:
-      - env:
+      - image: {{ .Values.mssql.image }} 
+        name: db
+        env:
         - name: ACCEPT_EULA
           value: "Y"
         - name: SA_PASSWORD
@@ -20,8 +23,6 @@ spec:
             secretKeyRef:
               name: {{ template "fullname" . }}
               key: SA_PASSWORD
-        image: {{ .Values.mssql.image }} 
-        name: db
         ports:
         - containerPort: 1433
         resources:
