@@ -1,0 +1,63 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ template "fullname" . }}
+  labels:
+    app: {{ template "fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: {{ template "fullname" . }}
+    spec:
+      containers:
+      - image: {{ .Values.image }}
+        name: fabrikamfiberweb
+        ports:
+        - containerPort: 80
+        env:
+        {{ if .Values.mssql.developerEdition }}
+        - name: DB_SA_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ template "fullname" . }}-mssql-secret
+              key: SA_PASSWORD
+        - name: DB_SA_USER
+          value: "sa"
+        - name: DB_DATABASE_NAME
+          value: "FabrikamFiber"
+        {{ else }}
+        - name: DB_DATABASE_NAME
+          valueFrom:
+            secretKeyRef:
+              name: {{ template "fullname" . }}-mssql-secret
+              key: database
+        - name: DB_SA_USER
+          valueFrom:
+            secretKeyRef:
+              name: {{ template "fullname" . }}-mssql-secret
+              key: username
+        - name: DB_SA_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ template "fullname" . }}-mssql-secret
+              key: password
+        - name: DB_SERVICE_HOST
+          valueFrom:
+            secretKeyRef:
+              name: {{ template "fullname" . }}-mssql-secret
+              key: host
+        - name: DB_SERVICE_PORT
+          valueFrom:
+            secretKeyRef:
+              name: {{ template "fullname" . }}-mssql-secret
+              key: port
+        {{ end }}
+        resources: {}
+      restartPolicy: Always
+      nodeSelector:
+        beta.kubernetes.io/os: windows
