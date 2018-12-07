@@ -11,6 +11,9 @@ metadata:
 spec:
   replicas: 1
   template:
+    metadata:
+      labels:
+        app: {{ template "fullname" . }}
     spec:
       containers:
       - image: {{ .Values.mssql.image }} 
