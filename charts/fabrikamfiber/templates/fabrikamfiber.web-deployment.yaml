@@ -31,6 +31,10 @@ spec:
           value: "sa"
         - name: DB_DATABASE_NAME
           value: "FabrikamFiber"
+        - name: DB_SERVICE_HOST
+          value: "{{ template "fullname" . }}-mssql-service"
+        - name: DB_SERVICE_PORT
+          value: "1433"
         {{ else }}
         - name: DB_DATABASE_NAME
           valueFrom:
