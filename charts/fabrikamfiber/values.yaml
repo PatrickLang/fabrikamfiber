@@ -6,7 +6,7 @@ image: patricklang/fabrikamfiber.web:1809
 ##
 imagePullPolicy: IfNotPresent
 imagePullSecrets:
-  - name: acrjdk8s
+  name: acrjdk8s
 ## Database
 mssql:
   ## Set to true to use a SQL Server 2017 developer edition database for test deployments
