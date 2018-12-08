@@ -11,5 +11,6 @@ spec:
     port: 1433
     targetPort: 1433
   selector:
-    name: {{ template "fullname" . }}-mssql-instance
+    app: {{ template "fullname" . }}
+    component: db
 {{- end }}
