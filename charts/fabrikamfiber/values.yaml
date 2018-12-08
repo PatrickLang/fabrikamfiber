@@ -5,8 +5,12 @@ image: patricklang/fabrikamfiber.web:1809
 ## ref: http://kubernetes.io/docs/user-guide/images/#pre-pulling-images
 ##
 imagePullPolicy: IfNotPresent
-imagePullSecrets:
-  name: acrjdk8s
+
+## If you need to authenticate to a registry to pull the image, create an image pull secret
+## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#create-a-secret-in-the-cluster-that-holds-your-authorization-token
+#imagePullSecrets:
+#  name: acrjdk8s
+
 ## Database
 mssql:
   ## Set to true to use a SQL Server 2017 developer edition database for test deployments
