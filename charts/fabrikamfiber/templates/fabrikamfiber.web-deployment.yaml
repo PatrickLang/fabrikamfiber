@@ -15,6 +15,10 @@ spec:
         app: {{ template "fullname" . }}
         component: web
     spec:
+      {{- if .Values.imagePullSecrets }}
+      imagePullSecrets:
+        - name: {{ .Values.imagePullSecrets.name }}
+      {{- end }}
       containers:
       - image: {{ .Values.image }}
         name: fabrikamfiberweb
