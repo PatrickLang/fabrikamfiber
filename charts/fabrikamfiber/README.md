@@ -14,6 +14,36 @@ Install these first:
 - [Service Catalog CLI](https://github.com/kubernetes-incubator/service-catalog/blob/master/docs/install.md#windows)
 
 
+TL;DR Helm
+
+Copy this into a file called tiller-rbac.yaml:
+
+```yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: tiller
+  namespace: kube-system
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: tiller
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+  - kind: ServiceAccount
+    name: tiller
+    namespace: kube-system
+```
+
+```powershell
+kubectl create -f tiller-rbac.yaml
+helm init --node-selectors "beta.kubernetes.io/os=linux" --upgrade --service-account tiller
+```
+
 TL;DR service catalog
 
 ```powershell
