@@ -1,0 +1,16 @@
+{{- if .Values.mssql.developerEdition }}
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: {{ template "fullname" . }}
+  name: {{ template "fullname" . }}-mssql-service
+spec:
+  ports:
+  - name: "1433"
+    port: 1433
+    targetPort: 1433
+  selector:
+    app: {{ template "fullname" . }}
+    component: db
+{{- end }}

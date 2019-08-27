@@ -1,0 +1,17 @@
+name: fabrikamfiber
+version: 0.1.0
+appVersion: 0.1.0
+description: FabrikamFiber ticketing system
+# icon: https://bitnami.com/assets/stacks/wordpress/img/wordpress-stack-220x234.png
+keywords:
+- windows
+- .net framework
+- application
+- sql
+home: https://github.com/patricklang/fabrikamfiber
+sources:
+- https://github.com/patricklang/fabrikamfiber
+maintainers:
+- name: Patrick Lang
+  email: patrick.lang@microsoft.com
+engine: gotpl

@@ -1,0 +1,50 @@
+## FabrikamFiber image version
+image: patricklang/fabrikamfiber.web:1809
+
+## Specify a imagePullPolicy
+## ref: http://kubernetes.io/docs/user-guide/images/#pre-pulling-images
+##
+imagePullPolicy: IfNotPresent
+
+## If you need to authenticate to a registry to pull the image, create an image pull secret
+## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#create-a-secret-in-the-cluster-that-holds-your-authorization-token
+#imagePullSecrets:
+#  name: acrjdk8s
+
+## Database
+mssql:
+  ## Set to true to use a SQL Server 2017 developer edition database for test deployments
+  ## Set to false to use Azure SQL
+  developerEdition: true
+  image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+  os: linux
+  azure:
+    ## ref: https://github.com/Azure/open-service-broker-azure/blob/master/docs/modules/mssql.md
+    ## The Azure region in which to deploy Azure Database for MySQL
+    location: westus2
+    ## The plan to request for Azure Database for MySQL
+    servicePlan: basic
+    ## Data transaction units - used with basic/premium service plans
+    ## Valid values are 10, 20, 50, 100, 200, 400, 800, 1600, 3000
+    dtus: 10
+
+    ## TODO: cores/storage for general-purpose and business-critical service plans
+    
+    
+## Database Password
+## If using an existing database, uncomment and set it here
+## saPassword: ""
+
+## Kubernetes configuration
+## For minikube, set this to NodePort, elsewhere use LoadBalancer
+##
+serviceType: LoadBalancer
+
+
+## Configure resource requests and limits
+## ref: http://kubernetes.io/docs/user-guide/compute-resources/
+##
+resources:
+  requests:
+    memory: 2048Mi
+    cpu: 1000m
