@@ -15,8 +15,10 @@ What's needed:
 
 ### Steps to build
 
-Find "Developer Command Prompt for VS 2017" on the Start menu or by searching for it. Once the command window is open, change to the directory with the source code, and run these steps.
- 
+1. Open FabrikamFiber.CallCenter.sln, and built it once. (Note: this can probably be replaced with nuget restore later)
+
+1. Find "Developer Command Prompt for VS 2017" (or VS 2019) on the Start menu or by searching for it. Once the command window is open, change to the directory with the source code, and run these steps.
+
 
 ```cmd
 rmdir /s /q MyCompany.Visitors.Web\bin\Release\Publish
