@@ -1,8 +1,9 @@
+apiVersion: v1
 name: fabrikamfiber
-version: 0.1.0
-appVersion: 0.1.0
+version: 0.2.0
+appVersion: 0.2.0
 description: FabrikamFiber ticketing system
-# icon: https://bitnami.com/assets/stacks/wordpress/img/wordpress-stack-220x234.png
+icon: https://github.com/PatrickLang/fabrikamfiber/blob/master/FabrikamFiber.Web/Content/images/logo.png?raw=true
 keywords:
 - windows
 - .net framework
