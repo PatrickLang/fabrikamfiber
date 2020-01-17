@@ -92,10 +92,3 @@ In each of these, add:
 helm package .\fabrikamfiber\
 helm install .\fabrikamfiber\
 ```
-
-TODO: bind environment variables correctly
-
-
-## Remaining Work
-
-- [ ] Test `developerEdition: true`

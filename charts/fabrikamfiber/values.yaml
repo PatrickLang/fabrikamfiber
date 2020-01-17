@@ -1,6 +1,5 @@
 ## FabrikamFiber image version
-image: patricklang/fabrikamfiber.web:1809-nov2019
-#image: patricklang/fabrikamfiber.web:1809-nov2019-logmonitor
+image: patricklang/fabrikamfiber.web:1809-jan2020
 
 ## Specify a imagePullPolicy
 ## ref: http://kubernetes.io/docs/user-guide/images/#pre-pulling-images
