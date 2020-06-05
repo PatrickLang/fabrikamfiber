@@ -9,19 +9,17 @@ I have archived it here since I frequently use it for examples rebuilding existi
 What's needed:
 
 - Windows 10 version 1803, Windows Server version 1803 or later
-- Visual Studio 2017 (any edition)
+- Visual Studio 2017 or later (any edition)
 - .Net Framework 4.7.2 SDK, ASP.Net Targeting Pack for Visual Studio
+- [nuget.exe](https://dist.nuget.org/win-x86-commandline/latest/nuget.exe)
 - Docker
 
 ### Steps to build
 
-1. Open FabrikamFiber.CallCenter.sln, and built it once. (Note: this can probably be replaced with nuget restore later)
-
 1. Find "Developer Command Prompt for VS 2017" (or VS 2019) on the Start menu or by searching for it. Once the command window is open, change to the directory with the source code, and run these steps.
 
-
 ```cmd
-rmdir /s /q MyCompany.Visitors.Web\bin\Release\Publish
+nuget.exe restore
 msbuild FabrikamFiber.CallCenter.sln /t:clean /p:Configuration=Release
 msbuild FabrikamFiber.CallCenter.sln /t:build /p:Configuration=Release /p:PublishProfile=FolderProfile /p:DeployOnBuild=true
 cd FabrikamFiber.Web
@@ -29,7 +27,10 @@ cd FabrikamFiber.Web
 docker build --no-cache -t ff .
 docker run --rm -p 8080:80 -d ff
 ``` 
+
 > Note: When you want to update the Windows and .Net container layers later, update then run `docker pull` on the base image given in the Dockerfile, then run `docker build` again.
+
+You can make sure the container started the app by browsing to http://localhost:8080. It will hang for a bit then return an error "Sorry, an error occurred while processing your request." because there's no database configured. When you run it with Kubernetes later - it will hook up the database for you and everything should work.
 
  
 ## Kubernetes
@@ -41,7 +42,6 @@ What's needed
 - kubectl
 - The files at k8s/* in this repo
 
-The latest step by step guide to deploying this on Azure at http://aka.ms/windowscontainers/kubernetes
 
 ### Steps to deploy
 
