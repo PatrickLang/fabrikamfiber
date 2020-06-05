@@ -10,7 +10,7 @@ What's needed:
 
 - Windows 10 version 1803, Windows Server version 1803 or later
 - Visual Studio 2017 or later (any edition)
-- .Net Framework 4.7.2 SDK, ASP.Net Targeting Pack for Visual Studio
+    - During install - also select the .Net Framework 4.7.2 SDK, and ASP.Net Targeting Pack for Visual Studio
 - [nuget.exe](https://dist.nuget.org/win-x86-commandline/latest/nuget.exe)
 - Docker
 
@@ -42,8 +42,11 @@ What's needed
 - kubectl
 - The files at k8s/* in this repo
 
+### Steps to deploy - with Helm
 
-### Steps to deploy
+The [Helm](https://helm.sh/) package manager is the easiest way to deploy this app. After you've installed Helm, follow the steps at [charts/fabrikamfiber/README.md](charts/fabrikamfiber/README.md)
+
+### Steps to deploy - manual
 
 This will create 2 deployments - one for web, one for the database, along with a shared secret. 
  
